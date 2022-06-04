@@ -66,31 +66,69 @@ public class Dinosaur {
 		return dinosaurString;
 	}
 	  
-	public String petAction() {
+	public void petAction() {
 		if (this.happy <= 3) {
 			this.happy++;
-			return ("He feels much better.");
-		} else if (this.disc <= 8) {
+			this.status = "That made him feel better!";
+			} else if (this.disc <= 8) {
 			this.happy++;
-			return ("He seems really happy.");
+			this.status = "He liked that!";
 		} else if (this.happy >= 10){
 			this.disc --;
 			this.happy = 10;
-			return ("He is overjoyed.");
+			this.status = "He's acting very proud!";
 		} else {
 			this.happy++;
-			return ("He liked that.");
+			this.status = "He liked that!";
 		}
 	}
 	
-	public String feedAction() {
+	public void feedAction() {
 		this.food--;
-		return("He thought that was delicious!");
+		this.hunger--;
+		if (hunger < 5) {
+			this.status = "He looks full!";
+			this.happy++;
+		} else if (hunger > 8) {
+			this.status = "He's still pretty hungry!";
+		} else if (hunger > 12) {
+			this.status = "He's starving!";
+		} else {
+			this.status = "He's not as hungry now!";
+			this.happy++;
+		}
 	}
 	
-	public String workoutAction() {
-		this.disc++;
+	public void talkAction() {
 		this.hunger++;
-		return("That was a good workout!");
+		if (this.happy < 4) {
+			this.disc++;
+			this.status = "He did not have a good training session...";
+		} else if (this.happy > 4 && this.happy <= 10) {
+			this.disc = this.disc+2;
+			this.status = "He had a good workout!";
+		} else {
+			this.disc = this.disc+3;
+			this.hunger++;
+			this.status = "He had a great workout!";
+		}
 	}
+	
+	public void checkStats() {
+		if (this.hunger < 0) {
+			this.happy--;
+			this.disc--;
+			this.hunger = 0;
+		}
+		if (this.food < 0) {
+			this.food = 0;
+		}
+		if (this.disc < 0) {
+			this.disc = 0;
+		}
+		if (this.happy > 20) {
+			this.happy = 20;
+		}
+	}
+	
 }
