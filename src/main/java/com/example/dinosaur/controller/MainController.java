@@ -49,9 +49,9 @@ public class MainController {
 		return dinosaur;
 	}
 	
-	@GetMapping("/workout")
+	@GetMapping("/talk")
 	public Dinosaur workout() {
-		dinosaur.workoutAction();
+		dinosaur.talkAction();
 		return dinosaur;
 	}
 	
